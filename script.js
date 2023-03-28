@@ -12,9 +12,9 @@ fetch('https://spotify23.p.rapidapi.com/search/?q=%3CREQUIRED%3E&type=multi&offs
 	.then(response => response.json())
 	.then(data => {
     let listLength = genres.querySelectorAll("li").length;
-      console.log(data.response.docs);
+      console.log(data.response.artists);
       if (listLength === 0) {
-        data.response.docs.forEach((elem) => {
+        data.response.artists.forEach((elem) => {
           let listElement = document.createElement("li");
           let anchor = document.createElement("a");
           listElement.textContent = elem.abstract;
