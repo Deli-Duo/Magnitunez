@@ -9,6 +9,9 @@ const options = {
 const genres = document.getElementById('genres');
 const search = document.getElementById('search');
 const searchButton = document.getElementById('search-button');
+const recommendedButton = document.querySelector('#');
+const historyButton = document.querySelector('#history');
+const likedSongsButton = document.querySelector('#liked');
 let topResults
 
 searchButton.addEventListener('click', (e) => 
@@ -34,3 +37,13 @@ searchButton.addEventListener('click', (e) =>
 	
 })
 
+// Raven: Display recommended artists based on the most recently searched artist's Spotify ID
+// Adding placeholder variable for the fetch for now
+let id = ''
+recommendedButton.addEventListener('click', (e) => {
+  e.preventDefault()
+  fetch(`https://spotify23.p.rapidapi.com/artist_related/?id=${id}`, options)
+	.then(response => response.json())
+	.then(data => console.log(response))
+	.catch(err => console.error(err));
+})
