@@ -2,14 +2,14 @@ const options = {
 	method: 'GET',
 	headers: {
 		'X-RapidAPI-Key': 'fa0cb7e2f1msh9b59f67b1eb228ep132237jsn1ad890c3071e',
-		'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
+		'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
 	}
 };
 
 const genres = document.getElementById('genres');
 const search = document.getElementById('search');
 const searchButton = document.getElementById('search-button');
-const recommendedButton = document.querySelector('#');
+const recommendedButton = document.querySelector('#recommended');
 const historyButton = document.querySelector('#history');
 const likedSongsButton = document.querySelector('#liked');
 let topResults
@@ -40,10 +40,7 @@ searchButton.addEventListener('click', (e) =>
 // Raven: Display recommended artists based on the most recently searched artist's Spotify ID
 // Adding placeholder variable for the fetch for now
 let id = ''
-recommendedButton.addEventListener('click', (e) => {
+likedSongsButton.addEventListener('click', (e) => {
   e.preventDefault()
-  fetch(`https://spotify23.p.rapidapi.com/artist_related/?id=${id}`, options)
-	.then(response => response.json())
-	.then(data => console.log(response))
-	.catch(err => console.error(err));
+  
 })
