@@ -6,29 +6,31 @@ const options = {
 	}
 };
 
-const genres = document.getElementById('genres')
+const genres = document.getElementById('genres');
+const search = document.getElementById('search');
+const searchButton = document.getElementById('search-button');
+let topResults
 
-fetch('https://spotify23.p.rapidapi.com/search/?q=%3CREQUIRED%3E&type=multi&offset=0&limit=10&numberOfTopResults=5', options)
+searchButton.addEventListener('click', (e) => 
+{
+	e.preventDefault()
+	async function search () {
+	await fetch(`https://spotify23.p.rapidapi.com/search/?q=${search.value}&type=multi&offset=0&limit=10&numberOfTopResults=5`, options)
 	.then(response => response.json())
 	.then(data => {
-    let listLength = genres.querySelectorAll("li").length;
-      console.log(data.response.artists);
-      if (listLength === 0) {
-        data.response.artists.forEach((elem) => {
-          let listElement = document.createElement("li");
-          let anchor = document.createElement("a");
-          listElement.textContent = elem.abstract;
-          anchor.href = elem.web_url;
-          anchor.target = "blank";
-          anchor.append(listElement);
-          genres.append(anchor);
-        });
-      } else {
-        data.response.docs.forEach((elem, index) => {
-          genres.querySelectorAll("a")[index].href = elem.web_url;
-          genres.querySelectorAll("a")[index].target = "blank";
-          genres.querySelectorAll("li")[index].textContent = elem.abstract;
-        });
-      }
-  })
+		localStorage.setItem('song-names', JSON.stringify(data))
+			topResults = data
+		console.log(data)
+	
+	}
+		) 
 	.catch(err => console.error(err));
+	}
+	search();
+	setTimeout(function () {
+		window.location ="search.html"
+	},1000)
+	
+	
+})
+
