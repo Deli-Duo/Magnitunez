@@ -13,6 +13,7 @@ const searchButton = document.getElementById('search-button');
 const recommendedButton = document.querySelector('#recommended');
 const historyButton = document.querySelector('#history');
 const likedSongsButton = document.querySelector('#liked');
+const likedDiv = document.querySelector('#likedDiv');
 let topResult
 
 
@@ -32,9 +33,13 @@ searchButton.addEventListener('click', async (e) =>
 })
 
 // Raven: Display recommended artists based on the most recently searched artist's Spotify ID
-// Adding placeholder variable for the fetch for now
-// let id = ''
-// likedSongsButton.addEventListener('click', (e) => {
-//   e.preventDefault()
-  
-// })
+likedSongsButton.addEventListener('click', (e) => {
+  e.preventDefault()
+  let likedList = document.createElement('li');
+  let likedSongs = (JSON.parse(localStorage.getItem('likedSongs')));
+  console.log(likedSongs)
+  for (let song in likedSongs) {
+    likedList.append(song)
+    console.log(song['title'], song['artist'])
+  }
+})
