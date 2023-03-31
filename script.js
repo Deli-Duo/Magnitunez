@@ -35,7 +35,7 @@ searchButton.addEventListener('click', async (e) =>
 // Raven: Display recommended artists based on the most recently searched artist's Spotify ID
 likedSongsButton.addEventListener('click', (e) => {
   e.preventDefault()
-  let likedList = document.createElement('li');
+  let likedList = document.createElement('ol');
   let likedSongs = (JSON.parse(localStorage.getItem('likedSongs')));
   console.log(likedSongs)
   for (let song in likedSongs) {

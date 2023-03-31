@@ -16,14 +16,14 @@ async function search() {
 		localStorage.setItem('song-names', JSON.stringify(data))
 		console.log(data.data)
 data.data.forEach(element => {
-    let li = document.createElement('li')
+    let ol = document.createElement('ol')
     let div = document.createElement('div')
     let likeButton = createEl('button');
     div.innerHTML = `<audio controls>
     <source src="${element.preview}" type="audio/ogg">
   Your browser does not support the audio element.
   </audio>`
-    li.innerHTML = `<p>${element.title}"${element.artist.name}</p>`
+    ol.innerHTML = `<p><img src="${element.album.cover} "> ${element.title} ${element.artist.name}</p>`
     likeButton.innerText = 'Like'
     likeButton.addEventListener('click', () => {
         const likedSongObj = {};
@@ -36,9 +36,9 @@ data.data.forEach(element => {
         let likedList = JSON.parse(localStorage.getItem('likedSongs'));
         console.log(likedList);
     })
-    li.append(likeButton)
-    li.append(div)
-    results.append(li)
+    ol.append(likeButton)
+    ol.append(div)
+    results.append(ol)
 });	
 
 	
