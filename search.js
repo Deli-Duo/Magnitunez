@@ -1,5 +1,17 @@
-
 const results = document.querySelector('#search-results')
+const likedSongArr = []; 
+
+/*
+likedSongArr = [
+    {title: "party in the usa", artist: 'miley cyrus'}
+]
+
+
+currentPlaylistSongs = {
+    party in the usa: true 
+}
+
+*/
 
 const getEl = (classOrId) => document.querySelector(classOrId);
 const createEl = (el) => document.createElement(el); 
@@ -27,11 +39,12 @@ data.data.forEach(element => {
     likeButton.innerText = 'Like'
     likeButton.addEventListener('click', () => {
         const likedSongObj = {};
-        if (!(element.title in likedSongObj)) {
+        if (!(element.title in likedSongObj) && !(element.artist.name in likedSongObj)) {
             likedSongObj['title'] = element.title;
             likedSongObj['artist'] = element.artist.name;
+            likedSongArr.push(likedSongObj);
         }
-        localStorage.setItem('likedSongs', JSON.stringify(likedSongObj))
+        localStorage.setItem('likedSongs', JSON.stringify(likedSongArr))
         likeButton.innerText = 'Liked'
         let likedList = JSON.parse(localStorage.getItem('likedSongs'));
         console.log(likedList);

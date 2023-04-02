@@ -14,6 +14,7 @@ const recommendedButton = document.querySelector('#recommended');
 const historyButton = document.querySelector('#history');
 const likedSongsButton = document.querySelector('#liked');
 const likedDiv = document.querySelector('#likedDiv');
+const likedList = document.querySelector('#list')
 let topResult
 
 
@@ -32,14 +33,35 @@ searchButton.addEventListener('click', async (e) =>
 	
 })
 
-// Raven: Display recommended artists based on the most recently searched artist's Spotify ID
+// Raven - Like feature
+const likedListOl = document.createElement('ol');
+const likedListLi = document.createElement('li');
+const likedSongs = (JSON.parse(localStorage.getItem('likedSongs')));
+console.log(likedSongs);
+
+for (let i = 0; i < 5; i++) {
+	let songTitle = likedSongs[i]['title']; 
+	let songArtist = likedSongs[i]['artist'];
+	// console.log(`"${songTitle}" - ${songArtist}`);
+	likedListLi.innerText = `"${songTitle}" - ${songArtist}`
+    likedListOl.append(likedListLi);
+	likedList.append(likedListOl);
+}
+likedList.style.display === "none"; 
+
 likedSongsButton.addEventListener('click', (e) => {
   e.preventDefault()
-  let likedList = document.createElement('ol');
-  let likedSongs = (JSON.parse(localStorage.getItem('likedSongs')));
-  console.log(likedSongs)
-  for (let song in likedSongs) {
-    likedList.append(song)
-    console.log(song['title'], song['artist'])
+  if (likedList.style.display === "none") {
+	likedList.style.display === "block";
   }
+  else {
+	likedList.style.display === "none";
+  }
+//   let likedList = document.createElement('ol');
+//   let likedSongs = (JSON.parse(localStorage.getItem('likedSongs')));
+//   console.log(likedSongs)
+//   for (let song in likedSongs) {
+//     likedList.append(song)
+//     console.log(song['title'], song['artist'])
+//   }
 })
