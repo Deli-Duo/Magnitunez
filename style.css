@@ -5,3 +5,7 @@ background-color: aqua;
 .carousel-item {
     height: 90vh;
 }
+
+main {
+    background-color: lightblue;
+}
